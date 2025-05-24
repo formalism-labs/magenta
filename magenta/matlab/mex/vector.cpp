@@ -1,0 +1,66 @@
+
+#include <memory.h>
+
+#include "vector.h"
+
+namespace magenta
+{
+
+namespace MEX
+{
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+// ConstRealVector
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+ConstRealVector::ConstRealVector(const mxArray *array) : ConstArray(array) 
+{
+	assign(array);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+void ConstRealVector::assign(const mxArray *array)
+{
+	_array = array;
+	_elements = _array ? mxGetPr(_array) : 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+// RealVector
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+RealVector::RealVector(int n, const double *v)
+{
+	_array = mxCreateDoubleMatrix(n, 1, mxREAL);
+	_elements = mxGetPr(_array);
+	if (v)
+		memcpy(_elements, v, size());
+}
+
+//---------------------------------------------------------------------------------------------
+
+RealVector::RealVector(const mxArray *array)
+{
+	assign(array);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+void RealVector::assign(const mxArray *array)
+{
+	if (!array)
+	{
+		_array = 0;
+		_elements = 0;
+		return;
+	}
+	_array = mxCreateDoubleMatrix(mxGetNumberOfElements(array), 1, mxREAL);
+	_elements = mxGetPr(_array);
+	memcpy(_elements, mxGetPr(array), size() * mxGetElementSize(_array));
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+} // namespace MEX
+} // namespace magenta

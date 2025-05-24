@@ -1,0 +1,13 @@
+
+#ifndef _magenta_geometry_defs_
+#define _magenta_geometry_defs_
+
+///////////////////////////////////////////////////////////////////////////////
+
+#include "magenta/geometry/2d-types.h"
+#include "magenta/geometry/matrix.h"
+#include "magenta/geometry/vector.h"
+
+///////////////////////////////////////////////////////////////////////////////
+
+#endif // _magenta_geometry_defs_

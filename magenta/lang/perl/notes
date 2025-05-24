@@ -1,0 +1,8 @@
+multiplicity information:
+http://aspn.activestate.com/ASPN/Reference/Products/ActivePerl/lib/Pod/perlembed.html
+
+solution:
+define a static member in Interpreter class that is to count active interpreters.
+any time an interpreter is constructed or destructed, this member is increased or decreased, respectively.
+in any interpreter-relevant mehtod, one checks the value of the counter member, and if it is positive, invokes
+PERL_SET_CONTEXT() with the current interpreter (script) value.

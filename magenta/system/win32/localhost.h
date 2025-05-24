@@ -1,0 +1,52 @@
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+// Localhost
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+#ifndef _magenta_system_win32_localhost_
+#define _magenta_system_win32_localhost_
+
+#include "magenta/files/classes.h"
+
+#include "magenta/exceptions/defs.h"
+#include "magenta/types/defs.h"
+
+#include <string>
+
+#ifndef _WINDOWS_
+#include <windows.h>
+#endif
+
+namespace magenta
+{
+
+using std::string;
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+class NetBIOSHostName
+{
+	string _name;
+
+public:
+	NetBIOSHostName(const string &name) : _name(name) {}
+
+	operator string() const { return _name; }
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+class Localhost
+{
+public:
+	NetBIOSHostName netBIOSName() const;
+	string loggedOnUserName() const;
+
+	CLASS_EXCEPTION_DEF("magenta::Localhost");
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+} // namespace magenta
+
+#endif // _magenta_system_win32_localhost_
