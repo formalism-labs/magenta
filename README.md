@@ -1,3 +1,5 @@
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/formalism-labs/magenta)
+
 <p align="center">
   <img src="docs/magenta.png" alt="Logo" />
 </p>
